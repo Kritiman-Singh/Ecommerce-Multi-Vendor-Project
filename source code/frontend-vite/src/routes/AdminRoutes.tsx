@@ -7,6 +7,9 @@ import GridTable from '../admin/pages/Home Page/GridTable'
 import ElectronicsTable from '../admin/pages/Home Page/ElectronicsTable'
 import ShopByCategoryTable from '../admin/pages/Home Page/ShopByCategoryTable'
 import Deal from '../admin/pages/Home Page/Deal'
+import Categories from '../admin/pages/Catalog/Categories'
+import AdminProducts from '../admin/pages/Catalog/AdminProducts'
+import AddProduct from '../admin/pages/Catalog/AddProduct'
 
 const AdminRoutes = () => {
   return (
@@ -14,6 +17,9 @@ const AdminRoutes = () => {
     <Route path='/' element={<SellersTable/>}/>
     <Route path='/coupon' element={<Coupon/>}/>
     <Route path='/add-coupon' element={<CouponForm/>}/>
+    <Route path='/categories' element={<Categories/>}/>
+    <Route path='/products' element={<AdminProducts/>}/>
+    <Route path='/add-product' element={<AddProduct/>}/>
     <Route path='/home-grid' element={<GridTable/>}/>
     <Route path='/electronics-category' element={<ElectronicsTable/>}/>
     <Route path='/shop-by-category' element={<ShopByCategoryTable/>}/>

@@ -1,7 +1,7 @@
 import React from 'react'
 import ElectricBoltIcon from '@mui/icons-material/ElectricBolt';
 import { Avatar, Button } from '@mui/material';
-import { teal } from '@mui/material/colors';
+import { amber as teal } from '@mui/material/colors';
 import { useNavigate } from 'react-router-dom';
 import type { Order, OrderItem } from '../../../types/orderTypes';
 import { formatDate } from '../../util/fomateDate';
@@ -13,7 +13,7 @@ interface OrderItemCardProps{
 const OrderItemCard:React.FC<OrderItemCardProps> = ({item,order}) => {
     const navigate = useNavigate()
     return (
-        <div onClick={() => navigate(`/account/orders/${order.id}/${item.id}`)} className='text-sm bg-white p-5 space-y-4 border rounded-md cursor-pointer'>
+        <div onClick={() => navigate(`/account/orders/${order.id}/${item.id}`)} className='text-sm bg-card border border-line p-5 space-y-4 rounded-xl cursor-pointer'>
 
             <div className='flex items-center gap-3'>
                 <div>
@@ -23,7 +23,7 @@ const OrderItemCard:React.FC<OrderItemCardProps> = ({item,order}) => {
 
                 </div>
                 <div>
-                    <h1 className='font-bold text-teal-600'>{order.orderStatus}
+                    <h1 className='font-bold text-gold-soft'>{order.orderStatus}
                     </h1>
                     <p>Arriving by {formatDate(order.deliverDate)}</p>
                 </div>

@@ -3,3 +3,100 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ---- Dark Luxury (default) ---- */
+:root {
+  color-scheme: dark;
+  --ink: 10 10 11;
+  --coal: 19 19 22;
+  --card: 23 23 28;
+  --cream: 245 239 224;
+  --muted: 161 161 170;
+  --gold: 212 175 55;
+  --gold-soft: 232 201 106;
+  --gold-deep: 154 123 30;
+  --line: 212, 175, 55, 0.16;
+}
+
+/* ---- Ivory Light theme ---- */
+html.light {
+  color-scheme: light;
+  --ink: 250 248 243;
+  --coal: 255 255 255;
+  --card: 255 255 255;
+  --cream: 26 23 17;
+  --muted: 101 98 90;
+  --gold: 154 123 30;
+  --gold-soft: 133 105 24;
+  --gold-deep: 120 95 22;
+  --line: 154, 123, 30, 0.25;
+}
+
+html,
+body {
+  background-color: rgb(var(--ink));
+  color: rgb(var(--cream));
+}
+
+body {
+  font-family: "Inter", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+::selection {
+  background: rgb(var(--gold));
+  color: rgb(var(--ink));
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: rgb(var(--ink));
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgb(var(--gold-deep)), #3a3a42);
+  border-radius: 999px;
+  border: 2px solid rgb(var(--ink));
+}
+
+.luxury-gradient-text {
+  background: linear-gradient(120deg, #f6e6b4 0%, #d4af37 40%, #9a7b1e 70%, #f2d98c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+html.light .luxury-gradient-text {
+  background: linear-gradient(120deg, #8a6d1a 0%, #b8912a 45%, #6e5714 75%, #9a7b1e 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.luxury-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01)),
+    rgb(var(--coal));
+  border: 1px solid rgba(var(--line));
+}
+
+html.light .luxury-card {
+  background: #ffffff;
+  border: 1px solid rgba(var(--line));
+  box-shadow: 0 10px 30px -14px rgba(120, 95, 22, 0.25);
+}
+
+.gold-ring {
+  box-shadow: 0 0 0 1px rgba(var(--line)), 0 18px 50px -18px rgba(212, 175, 55, 0.35);
+}
+
+/* slick dots -> gold */
+.slick-dots li button:before {
+  color: rgb(var(--gold) / 0.4) !important;
+  font-size: 9px !important;
+}
+.slick-dots li.slick-active button:before {
+  color: rgb(var(--gold)) !important;
+}

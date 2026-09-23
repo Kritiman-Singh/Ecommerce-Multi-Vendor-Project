@@ -7,7 +7,7 @@ import {
 import React, { useEffect, useState } from "react";
 
 import LocalOfferIcon from "@mui/icons-material/LocalOffer";
-import { teal } from "@mui/material/colors";
+import { amber as teal } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import CartItemCard from "./CartItemCard";
 import { useNavigate } from "react-router-dom";

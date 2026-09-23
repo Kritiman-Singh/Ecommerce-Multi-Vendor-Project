@@ -43,15 +43,22 @@ public class AppConfig {
 	}
 	
     // CORS Configuration
+    // FRONTEND_URL env (Render) se live frontend allow hoga,
+    // baki localhost local development ke liye.
     private CorsConfigurationSource corsConfigurationSource() {
         return new CorsConfigurationSource() {
             @Override
             public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
                 CorsConfiguration cfg = new CorsConfiguration();
-                cfg.setAllowedOrigins(Arrays.asList(
+                java.util.List<String> origins = new java.util.ArrayList<>(Arrays.asList(
                         "https://zosh-bazzar-zosh.vercel.app",
                         "http://localhost:3000",
                         "http://localhost:5173"));
+                String frontendUrl = System.getenv("FRONTEND_URL");
+                if (frontendUrl != null && !frontendUrl.isBlank() && !origins.contains(frontendUrl)) {
+                    origins.add(frontendUrl);
+                }
+                cfg.setAllowedOrigins(origins);
                 cfg.setAllowedMethods(Collections.singletonList("*"));
                 cfg.setAllowCredentials(true);
                 cfg.setAllowedHeaders(Collections.singletonList("*"));

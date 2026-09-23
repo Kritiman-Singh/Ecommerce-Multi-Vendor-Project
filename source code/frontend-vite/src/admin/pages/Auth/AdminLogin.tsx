@@ -80,7 +80,7 @@ const AdminLoginForm = () => {
 
     return (
         <div>
-            <h1 className='text-center font-bold text-xl text-primary-color pb-8'>Login</h1>
+            <h1 className='text-center font-display text-2xl luxury-gradient-text pb-8'>Admin Login</h1>
             <form className="space-y-5">
 
                 <TextField
@@ -111,7 +111,7 @@ const AdminLoginForm = () => {
                                 Didn't receive OTP?{" "}
                                 <span
                                     onClick={handleResendOTP}
-                                    className="text-teal-600 cursor-pointer hover:text-teal-800 font-semibold"
+                                    className="text-gold-soft cursor-pointer hover:text-gold font-semibold"
                                 >
                                     Resend OTP
                                 </span>

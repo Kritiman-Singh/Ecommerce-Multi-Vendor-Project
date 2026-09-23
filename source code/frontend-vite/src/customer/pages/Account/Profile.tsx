@@ -57,7 +57,7 @@ const Profile = () => {
 
                     {menu.map((item, index) => <div
                         onClick={() => handleClick(item)}
-                        className={`${menu.length - 1 !== index ? "border-b" : ""} ${item.path == location.pathname ? "bg-primary-color text-white" : ""} px-5 py-3 rounded-md hover:bg-teal-500 hover:text-white cursor-pointer `}>
+                        className={`${menu.length - 1 !== index ? "border-b border-line" : ""} ${item.path == location.pathname ? "bg-gradient-to-r from-gold-soft to-gold text-ink font-semibold" : "text-cream/70"} px-5 py-3 rounded-xl hover:bg-white/[0.04] hover:text-gold-soft cursor-pointer transition-all`}>
                         <p>{item.name}</p>
                     </div>)}
 

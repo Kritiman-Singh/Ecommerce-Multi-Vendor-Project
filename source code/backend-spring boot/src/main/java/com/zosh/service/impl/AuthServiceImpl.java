@@ -78,7 +78,7 @@ public class AuthServiceImpl implements AuthService {
         verificationCode.setEmail(email);
         verificationCodeRepository.save(verificationCode);
 
-        String subject = "Zosh Bazaar Login/Signup Otp";
+        String subject = "Zentro Login/Signup Otp";
         String text = "your login otp is - ";
         emailService.sendVerificationOtpEmail(email, otp, subject, text);
     }

@@ -42,13 +42,19 @@ dist/
 # =========================
 # Environment / Secrets
 # =========================
+# .env kabhi commit mat karna (backend + frontend dono ke liye)
+# Render par Dashboard -> Environment me values dalo,
+# ya .env.example dekh kar waha same keys banao.
 .env
 .env.*
 !.env.example
+!**/.env.example
 
 # Spring configuration containing secrets
 application-prod.properties
 application-prod.yml
+**/application-prod.properties
+**/application-prod.yml
 
 # =========================
 # OS

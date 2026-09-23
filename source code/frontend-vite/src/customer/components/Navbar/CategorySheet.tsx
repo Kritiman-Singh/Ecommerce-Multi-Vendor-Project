@@ -51,19 +51,22 @@ const navigate=useNavigate()
         navigate("/products/"+category)
     }
     return (
-        <Box className='bg-white shadow-lg  lg:h-[500px] overflow-y-auto'>
+        <Box
+          className='border border-line shadow-card rounded-2xl max-h-[70vh] overflow-y-auto'
+          sx={{ backgroundColor: (theme) => theme.palette.background.paper }}
+        >
             <div className=' flex text-sm flex-wrap'>
                 {categoryTwo[selectedCategory]?.map((item: any,index) => 
-                <div  key={item.name} className={`p-8 lg:w-[20%] ${index%2==0?"bg-slate-50":"bg-white"}`}>
+                <div  key={item.name} className={`p-8 lg:w-[20%] ${index%2==0?"bg-white/[0.02]":"bg-transparent"}`}>
 
-                    <p className='text-[#00927c] mb-5 font-semibold'>{item.name}</p>
+                    <p className='text-gold-soft mb-5 font-semibold tracking-wide'>{item.name}</p>
 
-                    <ul className='space-y-3'>
+                    <ul className='space-y-3 text-cream/70'>
                         {childCategory(categoryThree[selectedCategory], item.categoryId)?.map((item: any) => <div key={item.name}>
 
                             <li 
                             onClick={()=>handleCategoryClick(item.categoryId)}
-                            className='hover:text-[#00927c] cursor-pointer'>
+                            className='hover:text-gold-soft cursor-pointer transition-colors'>
                                 {item.name}
                             </li>
 

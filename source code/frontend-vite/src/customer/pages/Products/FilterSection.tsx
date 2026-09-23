@@ -9,7 +9,6 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import { brands } from "../../../data/Filter/brand";
-import { teal } from "@mui/material/colors";
 import { colors } from "../../../data/Filter/color";
 import { price } from "../../../data/Filter/price";
 import { discount } from "../../../data/Filter/discount";
@@ -47,13 +46,13 @@ const FilterSection = () => {
   };
 
   return (
-    <div className="-z-50 space-y-5 bg-white">
+    <div className="space-y-5 rounded-2xl border border-line bg-card p-2 py-5">
       <div className="flex items-center justify-between h-[40px] px-9 lg:border-r">
         <p className="text-lg font-semibold">Filters</p>
         <Button
         onClick={clearAllFilters}
           size="small"
-          className="text-teal-600 cursor-pointer font-semibold"
+          className="text-gold-soft cursor-pointer font-semibold"
         >
           clear all
         </Button>
@@ -67,7 +66,7 @@ const FilterSection = () => {
                 fontSize: "16px",
                 fontWeight: "bold",
                 pb: "14px",
-                color: teal[600],
+                color: "#d4af37",
               }}
               className="text-2xl font-semibold"
               id="brand"
@@ -95,7 +94,7 @@ const FilterSection = () => {
           <div>
             <button
               onClick={handleExpendBrand}
-              className="text-teal-600 cursor-pointer hover:text-teal-900 flex items-center"
+              className="text-gold-soft cursor-pointer hover:text-gold flex items-center"
             >
               {expendBrand ? "hide" : `+ ${brands.length - 5} more`}
             </button>
@@ -109,7 +108,7 @@ const FilterSection = () => {
                 fontSize: "16px",
                 fontWeight: "bold",
                 pb: "14px",
-                color: teal[600],
+                color: "#d4af37",
               }}
               className="text-2xl font-semibold"
               id="color"
@@ -148,7 +147,7 @@ const FilterSection = () => {
           <div>
             <button
               onClick={handleExpendColor}
-              className="text-teal-600 cursor-pointer hover:text-teal-900 flex items-center"
+              className="text-gold-soft cursor-pointer hover:text-gold flex items-center"
             >
               {expendColor ? "hide" : `+ ${colors.length - 5} more`}
             </button>
@@ -163,7 +162,7 @@ const FilterSection = () => {
                 fontSize: "16px",
                 fontWeight: "bold",
                 pb: "14px",
-                color: teal[600],
+                color: "#d4af37",
               }}
               className="text-2xl font-semibold"
               id="price"
@@ -195,7 +194,7 @@ const FilterSection = () => {
                 fontSize: "16px",
                 fontWeight: "bold",
                 pb: "14px",
-                color: teal[600],
+                color: "#d4af37",
               }}
               className="text-2xl font-semibold"
               id="brand"

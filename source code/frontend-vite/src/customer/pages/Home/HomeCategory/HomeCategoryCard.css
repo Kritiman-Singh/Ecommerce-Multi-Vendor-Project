@@ -1,10 +1,20 @@
-.custom-border {
-    border: 9px solid;
-    border-color: rgb(255, 58, 91) rgb(99, 99, 99);
+.arch-frame {
+    border: 1px solid rgba(var(--line));
+    background: rgb(var(--card));
+    box-shadow: 0 14px 40px -18px rgba(0, 0, 0, 0.7);
+    transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
   }
-  
-  .custom-border img {
-    border-radius: 50%;
+
+  .group:hover .arch-frame {
+    border-color: rgba(var(--gold) / 0.7);
+    box-shadow: 0 22px 55px -18px rgba(212, 175, 55, 0.4);
+    transform: translateY(-6px);
   }
-  
- 
+
+  .arch-frame img {
+    transition: transform 0.8s ease;
+  }
+
+  .group:hover .arch-frame img {
+    transform: scale(1.08);
+  }
