@@ -29,6 +29,8 @@ public class AppConfig {
         http.sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(Authorize -> Authorize
 //                		.requestMatchers("/api/admin/**").hasAnyRole("SHOP_OWNER","ADMIN")
+                                // Public health check - bina token ke (Render/uptime monitor ke liye)
+                                .requestMatchers("/health").permitAll()
                                 .requestMatchers("/api/**").authenticated()
                                 .requestMatchers("/api/products/*/reviews").permitAll()
                                 .anyRequest().permitAll()

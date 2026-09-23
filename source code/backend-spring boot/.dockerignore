@@ -1,0 +1,7 @@
+# Docker build context halka rakhne ke liye (Render par build fast hoga)
+target/
+.git/
+.idea/
+*.iml
+.vscode/
+.env
