@@ -1,6 +1,7 @@
 import './App.css';
 import { ThemeProvider } from '@emotion/react';
-import customeTheme from './Theme/customeTheme';
+import customeTheme, { getCustomTheme } from './Theme/customeTheme';
+import { ThemeModeProvider, useThemeMode } from './Theme/ThemeContext';
 import { Button } from '@mui/material';
 import Navbar from './customer/components/Navbar/Navbar';
 import Home from './customer/pages/Home/Home';
@@ -14,7 +15,7 @@ import AdminDashboard from './admin/pages/Dashboard/Dashboard';
 import SellerAccountVerification from './seller/pages/SellerAccountVerification';
 import SellerAccountVerified from './seller/pages/SellerAccountVerified';
 import { useAppDispatch, useAppSelector } from './Redux Toolkit/Store';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { fetchSellerProfile } from './Redux Toolkit/Seller/sellerSlice';
 import BecomeSeller from './customer/pages/BecomeSeller/BecomeSeller';
 import AdminLoginForm from './admin/pages/Auth/AdminLogin';
@@ -27,6 +28,8 @@ import Mobile from './data/Products/mobile';
 function App() {
   const dispatch = useAppDispatch()
   const { auth, sellerAuth, sellers, user } = useAppSelector(store => store)
+  const { mode } = useThemeMode();
+  const theme = useMemo(() => getCustomTheme(mode), [mode]);
 const navigate=useNavigate();
 
   useEffect(() => {
@@ -43,7 +46,7 @@ const navigate=useNavigate();
   }, [dispatch])
 
   return (
-    <ThemeProvider theme={customeTheme}>
+    <ThemeProvider theme={theme}>
       <div className='App' >
 
 

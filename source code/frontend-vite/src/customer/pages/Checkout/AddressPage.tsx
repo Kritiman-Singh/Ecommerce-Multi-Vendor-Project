@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import PricingCard from '../Cart/PricingCard'
-import { Box, Button, FormControlLabel, Modal, Radio, RadioGroup } from '@mui/material'
+import { Alert, Box, Button, FormControlLabel, Modal, Radio, RadioGroup, Snackbar } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import AddressForm from './AddresssForm'
 import AddressCard from './AddressCard'
 import AddIcon from '@mui/icons-material/Add';
 import { createOrder } from '../../../Redux Toolkit/Customer/OrderSlice'
+import { fetchUserProfile } from '../../../Redux Toolkit/Customer/UserSlice'
 import { useAppDispatch, useAppSelector } from '../../../Redux Toolkit/Store'
 
 const style = {
@@ -35,8 +36,12 @@ const AddressPage = () => {
     const navigate = useNavigate()
     const [value, setValue] = React.useState(0);
     const dispatch = useAppDispatch();
-    const { user } = useAppSelector(store => store)
+    const { user, orders } = useAppSelector(store => store)
     const [paymentGateway, setPaymentGateway] = useState(paymentGatwayList[0].value);
+    const [snackbar, setSnackbar] = useState<{ open: boolean; message: string; severity: "success" | "error" }>({
+        open: false, message: "", severity: "success"
+    });
+    const handledOrderRef = useRef(false);
 
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
@@ -55,6 +60,24 @@ const AddressPage = () => {
                 jwt: localStorage.getItem('jwt') || ""
             }))
     }
+
+    // Order placed but no payment link (gateway keys missing locally):
+    // refresh saved addresses and take the user to their orders.
+    useEffect(() => {
+        if (orders.paymentOrder && !orders.paymentOrder.payment_link_url && !handledOrderRef.current) {
+            handledOrderRef.current = true;
+            dispatch(fetchUserProfile({ jwt: localStorage.getItem("jwt") || "", navigate }));
+            setSnackbar({ open: true, message: "Order placed! Address saved.", severity: "success" });
+            const t = setTimeout(() => navigate("/account/orders"), 1600);
+            return () => clearTimeout(t);
+        }
+    }, [orders.paymentOrder, dispatch, navigate]);
+
+    useEffect(() => {
+        if (orders.error) {
+            setSnackbar({ open: true, message: orders.error, severity: "error" });
+        }
+    }, [orders.error]);
 
     const handlePaymentChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPaymentGateway((event.target as HTMLInputElement).value);
@@ -135,6 +158,21 @@ const AddressPage = () => {
                     <AddressForm paymentGateway={paymentGateway} handleClose={handleClose} />
                 </Box>
             </Modal>
+
+            <Snackbar
+                open={snackbar.open}
+                autoHideDuration={5000}
+                onClose={() => setSnackbar((s) => ({ ...s, open: false }))}
+                anchorOrigin={{ vertical: "top", horizontal: "right" }}
+            >
+                <Alert
+                    severity={snackbar.severity}
+                    variant="filled"
+                    onClose={() => setSnackbar((s) => ({ ...s, open: false }))}
+                >
+                    {snackbar.message}
+                </Alert>
+            </Snackbar>
         </div>
     )
 }

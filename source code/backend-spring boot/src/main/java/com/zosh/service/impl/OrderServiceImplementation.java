@@ -33,14 +33,17 @@ public class OrderServiceImplementation implements OrderService {
 
 	@Override
 	public Set<Order> createOrder(User user, Address shippAddress, Cart cart) {
-		
+
 //		shippAddress.setUser(user);
-		if(!user.getAddresses().contains(shippAddress)){
-			user.getAddresses().add(shippAddress);
+
+		// Save first so the address gets an id, then link it to the user
+		// and persist the user — otherwise the saved-address link is lost.
+		Address address = addressRepository.save(shippAddress);
+
+		if(!user.getAddresses().contains(address)){
+			user.getAddresses().add(address);
+			userRepository.save(user);
 		}
-
-
-		Address address= addressRepository.save(shippAddress);
 
 
 

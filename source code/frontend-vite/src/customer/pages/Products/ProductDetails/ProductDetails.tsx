@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import StarIcon from '@mui/icons-material/Star';
-import { teal } from '@mui/material/colors';
+import { amber as teal } from '@mui/material/colors';
 import { Box, Button, Divider, Grid, IconButton, LinearProgress, Modal, Rating } from '@mui/material';
 import ShieldIcon from '@mui/icons-material/Shield';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
@@ -94,7 +94,7 @@ const ProductDetails = () => {
                 </section>
 
                 <section>
-                    <h1 className='font-bold text-lg text-teal-950'>{products.product?.seller?.businessDetails.businessName}</h1>
+                    <h1 className='font-bold text-lg text-cream'>{products.product?.seller?.businessDetails.businessName}</h1>
                     <p className='text-gray-500 font-semibold'>{products.product?.title}</p>
 
                     <div className='flex justify-between items-center py-2 border w-[180px] px-3 mt-5'>
@@ -112,7 +112,7 @@ const ProductDetails = () => {
                         <div className='price flex items-center gap-3 mt-5 text-lg'>
                             <span className='font-semibold text-gray-800' > ₹{products.product?.sellingPrice}</span>
                             <span className='text thin-line-through text-gray-400 '>₹{products.product?.mrpPrice}</span>
-                            <span className='text-[#00927c] font-semibold'>{products.product?.discountPercent}% off</span>
+                            <span className='text-gold-soft font-semibold'>{products.product?.discountPercent}% off</span>
                         </div>
                         <p className='text-sm'>Inclusive of all taxes. Free Shipping above ₹1500.</p>
                     </div>

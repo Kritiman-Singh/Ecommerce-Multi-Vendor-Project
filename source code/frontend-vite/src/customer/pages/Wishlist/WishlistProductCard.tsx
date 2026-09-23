@@ -1,6 +1,5 @@
 import React, { useState, useEffect, MouseEvent } from 'react';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import { teal } from '@mui/material/colors';
 import { Button, IconButton } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
 import type { Product } from '../../../types/productTypes';
@@ -53,7 +52,7 @@ const WishlistProductCard: React.FC<ProductCardProps> = ({ item }) => {
                 <div className=' flex items-center gap-3 '>
                     <span className='font-semibold text-gray-800'> ₹{item.sellingPrice}</span>
                     <span className='text thin-line-through text-gray-400 '>₹{item.mrpPrice}</span>
-                    <span className='text-[#00927c] font-semibold'>{item.discountPercent}% off</span>
+                    <span className='text-gold-soft font-semibold'>{item.discountPercent}% off</span>
                 </div>
 
 
@@ -65,7 +64,7 @@ const WishlistProductCard: React.FC<ProductCardProps> = ({ item }) => {
      <button
      onClick={handleIconClick}
       >
- <CloseIcon className='cursor-pointer bg-white rounded-full p-1' sx={{ color: teal[500],fontSize:"2rem"  }} />
+  <CloseIcon className='cursor-pointer bg-ink/70 border border-line rounded-full p-1' sx={{ color: "#e8c96a",fontSize:"2rem"  }} />
      </button>
                
 </div>

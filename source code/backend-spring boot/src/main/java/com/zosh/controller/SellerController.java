@@ -50,7 +50,7 @@ public class SellerController {
         String otp = OtpUtils.generateOTP();
         VerificationCode verificationCode = verificationService.createVerificationCode(otp, req.getEmail());
 
-        String subject = "Zosh Bazaar Login Otp";
+        String subject = "Zentro Login Otp";
         String text = "your login otp is - ";
         emailService.sendVerificationOtpEmail(req.getEmail(), verificationCode.getOtp(), subject, text);
 
@@ -127,9 +127,9 @@ public class SellerController {
         String otp = OtpUtils.generateOTP();
         VerificationCode verificationCode = verificationService.createVerificationCode(otp, seller.getEmail());
 
-        String subject = "Zosh Bazaar Email Verification Code";
-        String text = "Welcome to Zosh Bazaar, verify your account using this link ";
-        String frontend_url = "http://localhost:3000/verify-seller/";
+        String subject = "Zentro Email Verification Code";
+        String text = "Welcome to Zentro, verify your account using this link ";
+        String frontend_url = "http://localhost:5173/verify-seller/";
         emailService.sendVerificationOtpEmail(seller.getEmail(), verificationCode.getOtp(), subject, text + frontend_url);
         return new ResponseEntity<>(savedSeller, HttpStatus.CREATED);
     }
@@ -141,8 +141,7 @@ public class SellerController {
     }
 
     @GetMapping("/profile")
-    public ResponseEntity<Seller> getSellerByJwt(
-            @RequestHeader("Authorization") String jwt) throws SellerException {
+    public ResponseEntity<Seller> getSellerByJwt(@RequestHeader("Authorization") String jwt) throws SellerException {
         String email = jwtProvider.getEmailFromJwtToken(jwt);
         Seller seller = sellerService.getSellerByEmail(email);
         return new ResponseEntity<>(seller, HttpStatus.OK);

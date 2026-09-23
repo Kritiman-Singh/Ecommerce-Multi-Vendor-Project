@@ -1,5 +1,7 @@
 import React from "react";
 import { useAppSelector } from "../../../../Redux Toolkit/Store";
+import { useNavigate } from "react-router-dom";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 const grid = [
   {"categoryId":"women_lehenga_cholis",
@@ -39,58 +41,45 @@ const grid = [
       "https://assets.myntassets.com/h_720,q_90,w_540/v1/assets/images/13837166/2021/8/19/04e40e02-4c56-4705-94d0-f444b29973aa1629373611707-House-of-Pataudi-Women-Maroon-Embellished-Handcrafted-Wedges-1.jpg",
   },
 ];
+
 const TopBrand = () => {
   const {homePage}=useAppSelector(store=>store)
+  const navigate = useNavigate()
+  const data = homePage.homePageData?.grid?.length ? homePage.homePageData.grid : grid;
   return (
-    <div className="grid gap-4 grid-rows-12 grid-cols-12 lg:h-[600px] px-5 lg:px-20">
-      <div className=" col-span-3 row-span-12  text-white  rounded ">
-        <img
-          className="w-full h-full object-cover border-fuchsia-800 lg:border-[9px]s rounded-md"
-          src={homePage.homePageData?.grid[0].image}
-          alt=""
-        />
-      </div>
+    <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-4 lg:gap-5 px-5 lg:px-20">
+      {data.slice(0, 6).map((item: any, i: number) => (
+        <article
+          key={i}
+          onClick={() => item.categoryId && navigate(`/products/${item.categoryId}`)}
+          className="group relative h-[340px] sm:h-[380px] xl:h-[420px] overflow-hidden rounded-[20px] border border-line cursor-pointer transition-all duration-500 hover:border-gold/60 hover:shadow-luxury"
+        >
+          <img
+            className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-[1.2s] ease-out group-hover:scale-110"
+            src={item.image}
+            alt={item.name ?? ""}
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/25 to-transparent" />
 
-      <div className="col-span-2 row-span-6  text-white rounded">
-        <img
-          className="w-full h-full object-cover border-fuchsia-800 lg:border-[9px]s rounded-md"
-          src={homePage.homePageData?.grid[1].image}
-          alt=""
-        />
-      </div>
+          <span className="absolute top-4 left-4 font-display text-3xl text-cream/25 transition-colors duration-500 group-hover:text-gold-soft/70">
+            {String(i + 1).padStart(2, "0")}
+          </span>
+          <span className="absolute top-4 right-4 rounded-full border border-cream/25 px-2.5 py-0.5 text-[9px] tracking-[0.25em] uppercase text-cream/80 backdrop-blur-sm">
+            Look
+          </span>
 
-      <div className="col-span-4 row-span-6  text-white  rounded ">
-        <img
-          className="w-full h-full object-cover object-top border-fuchsia-800 lg:border-[9px]s rounded-md"
-          src={homePage.homePageData?.grid[2].image}
-          alt=""
-        />
-      </div>
-
-      <div className="col-span-3 row-span-12  text-white  rounded ">
-        <img
-          className="w-full h-full object-cover object-top border-fuchsia-800 lg:border-[9px]s rounded-md"
-          src={homePage.homePageData?.grid[3].image}
-          alt=""
-        />
-      </div>
-
-      <div className="col-span-4 row-span-6  text-white  rounded ">
-        <img
-          className="w-full h-full object-cover object-top border-fuchsia-800 lg:border-[9px]s rounded-md"
-          src={homePage.homePageData?.grid[4].image}
-          alt=""
-        />
-      </div>
-      <div className="col-span-2 row-span-6  text-white rounded ">
-        <img
-          className="w-full h-full object-cover border-fuchsia-800 lg:border-[9px]s rounded-md"
-          src={homePage.homePageData?.grid[5].image}
-          alt=""
-        />
-      </div>
-
-      {/* https://tristenwallace.com/wp-content/uploads/2022/06/wed-7.jpg */}
+          <div className="absolute bottom-0 left-0 right-0 p-4">
+            <p className="text-[10px] tracking-[0.3em] uppercase text-gold-soft">Handpicked</p>
+            <h3 className="mt-1 font-display text-lg leading-tight text-cream capitalize">
+              {(item.name ?? "").split("_").join(" ")}
+            </h3>
+            <span className="mt-2 inline-flex items-center gap-2 text-[10px] tracking-[0.25em] uppercase text-cream/70 transition-all duration-500 group-hover:gap-3 group-hover:text-gold-soft">
+              Explore <ArrowForwardIcon sx={{ fontSize: 13 }} />
+            </span>
+          </div>
+        </article>
+      ))}
     </div>
   );
 };

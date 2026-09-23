@@ -1,8 +1,7 @@
 import React, { useState, useEffect, MouseEvent } from "react";
 import "./ProductCard.css";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { teal } from "@mui/material/colors";
-import { Box, Button, IconButton, Modal } from "@mui/material";
+import { Box, Button, Modal } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import type { Product } from "../../../../types/productTypes";
 import {
@@ -16,8 +15,6 @@ import ModeCommentIcon from '@mui/icons-material/ModeComment';
 import ChatBot from "../../ChatBot/ChatBot";
 
 interface ProductCardProps {
-    // images: string[];
-    // categoryId: string | undefined;
     item: Product;
 }
 const style = {
@@ -51,7 +48,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ item }) => {
         if (isHovered) {
             interval = setInterval(() => {
                 setCurrentImage((prevImage) => (prevImage + 1) % item.images.length);
-            }, 1000); // Change image every 1 second
+            }, 1000);
         } else if (interval) {
             clearInterval(interval);
         }
@@ -67,6 +64,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ item }) => {
         setShowChatBot(false)
     }
 
+    const wishlisted = wishlist.wishlist ? isWishlisted(wishlist.wishlist, item) : isFavorite;
+
     return (
         <>
             <div
@@ -75,81 +74,85 @@ const ProductCard: React.FC<ProductCardProps> = ({ item }) => {
                         `/product-details/${item.category?.categoryId}/${item.title}/${item.id}`
                     )
                 }
-                className="group px-4 relative"
+                className="group px-2 relative"
             >
-                <div
-                    className="card "
-                    onMouseEnter={() => setIsHovered(true)}
-                    onMouseLeave={() => setIsHovered(false)}
-                >
-                    {item.images.map((image: any, index: number) => (
-                        <img
-                            key={index}
-                            className="card-media object-top"
-                            src={image}
-                            alt={`product-${index}`}
-                            style={{
-                                transform: `translateX(${(index - currentImage) * 100}%)`,
-                            }}
-                        />
-                    ))}
-                    {isHovered && (
-                        <div className="indicator flex flex-col items-center space-y-2">
-                            <div className="flex gap-4">
-                                {item.images.map((item: any, index: number) => (
-                                    <button
-                                        key={index}
-                                        className={`indicator-button ${index === currentImage ? "active" : ""
-                                            }`}
-                                        onClick={() => setCurrentImage(index)}
-                                    />
-                                ))}
-                            </div>
+                <div className="overflow-hidden rounded-2xl border border-line bg-card transition-all duration-300 hover:border-gold/50 hover:shadow-luxury">
+                    <div
+                        className="card !border-0 !rounded-none"
+                        onMouseEnter={() => setIsHovered(true)}
+                        onMouseLeave={() => setIsHovered(false)}
+                    >
+                        {item.images.map((image: any, index: number) => (
+                            <img
+                                key={index}
+                                className="card-media object-top"
+                                src={image}
+                                alt={`product-${index}`}
+                                style={{
+                                    transform: `translateX(${(index - currentImage) * 100}%)`,
+                                }}
+                            />
+                        ))}
+                        <div className="absolute inset-0 bg-gradient-to-t from-ink/50 via-transparent to-transparent pointer-events-none" />
+                        {(item.discountPercent ?? 0) > 0 && (
+                            <span className="absolute top-3 left-3 rounded-full bg-gradient-to-r from-gold-soft to-gold px-2.5 py-1 text-[10px] font-bold tracking-widest text-ink">
+                                {item.discountPercent}% OFF
+                            </span>
+                        )}
+                        <button
+                            onClick={handleAddWishlist}
+                            className={`absolute top-3 right-3 flex h-9 w-9 items-center justify-center rounded-full border backdrop-blur transition-all ${wishlisted ? "border-gold bg-gold text-ink" : "border-white/15 bg-ink/60 text-cream hover:border-gold/60"}`}
+                        >
+                            {wishlisted ? (
+                                <FavoriteIcon sx={{ fontSize: 18 }} />
+                            ) : (
+                                <FavoriteBorderIcon sx={{ fontSize: 18 }} />
+                            )}
+                        </button>
+                        {isHovered && (
+                            <div className="indicator flex flex-col items-center space-y-2">
+                                <div className="flex gap-2">
+                                    {item.images.map((item: any, index: number) => (
+                                        <button
+                                            key={index}
+                                            className={`indicator-button ${index === currentImage ? "active" : ""
+                                                }`}
+                                            onClick={(e) => { e.stopPropagation(); setCurrentImage(index); }}
+                                        />
+                                    ))}
+                                </div>
 
-                            <div className="flex gap-3">
-                                {wishlist.wishlist && (
+                                <div className="flex gap-2">
                                     <Button
+                                        onClick={handleShowChatBot}
                                         variant="contained"
-                                        color="secondary"
-
-                                        sx={{ zIndex: 10 }}
-                                        className=" z-50"
-                                        onClick={handleAddWishlist}
+                                        size="small"
+                                        sx={{ borderRadius: 999, minWidth: 0, px: 1.5 }}
                                     >
-                                        {isWishlisted(wishlist.wishlist, item) ? (
-                                            <FavoriteIcon sx={{ color: teal[500] }} />
-                                        ) : (
-                                            <FavoriteBorderIcon sx={{ color: "gray" }} />
-                                        )}
+                                        <ModeCommentIcon sx={{ fontSize: 16, color: "#0a0a0b" }} />
                                     </Button>
-                                )}
-                                <Button onClick={handleShowChatBot} color="secondary" variant="contained">
-                                    <ModeCommentIcon sx={{ color: teal[500] }} />
-                                </Button>
+                                </div>
                             </div>
-
-
-                        </div>
-                    )}
-                </div>
-                <div className="details pt-3 space-y-1 group-hover-effect  rounded-md ">
-                    <div className="name space-y ">
-                        <h1 className="font-semibold text-lg">
-                            {item.seller?.businessDetails.businessName}
-                        </h1>
-                        <p className="">{item.title}</p>
+                        )}
                     </div>
-                    <div className="price flex items-center gap-3 ">
-                        <span className="font-semibold text-gray-800">
-                            {" "}
-                            ₹{item.sellingPrice}
-                        </span>
-                        <span className="text thin-line-through text-gray-400 ">
-                            ₹{item.mrpPrice}
-                        </span>
-                        <span className="text-[#00927c] font-semibold">
-                            {item.discountPercent}% off
-                        </span>
+                    <div className="details p-4 space-y-1.5">
+                        <div className="name">
+                            <h1 className="text-[11px] tracking-[0.22em] uppercase text-gold-soft/90 truncate">
+                                {item.seller?.businessDetails.businessName}
+                            </h1>
+                            <p className="mt-1 truncate text-sm text-cream/85">{item.title}</p>
+                        </div>
+                        <div className="price flex items-center gap-2.5">
+                            <span className="font-display text-lg text-cream">
+                                ₹{item.sellingPrice}
+                            </span>
+                            <span className="text thin-line-through text-xs text-muted">
+                                ₹{item.mrpPrice}
+                            </span>
+                            <span className="text-xs font-semibold text-gold-soft">
+                                {item.discountPercent}% off
+                            </span>
+                        </div>
                     </div>
                 </div>
 

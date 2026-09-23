@@ -1,7 +1,8 @@
 .logo{
-    font-family: "Pacifico", cursive;
-    font-weight: 400;
+    font-family: "Fraunces", Georgia, serif;
+    font-weight: 600;
     font-style: normal;
+    letter-spacing: 0.01em;
 }
 .category{
     font-weight: 400;
@@ -9,7 +10,7 @@
 
 
 .blur-bg {
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(10px); /* For Safari */
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px); /* For Safari */
   }
   

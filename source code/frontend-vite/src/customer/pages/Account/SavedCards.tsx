@@ -1,6 +1,6 @@
 import React from 'react'
 import AddCardIcon from '@mui/icons-material/AddCard';
-import { teal } from '@mui/material/colors';
+import { amber as teal } from '@mui/material/colors';
 
 const SavedCards = () => {
   return (

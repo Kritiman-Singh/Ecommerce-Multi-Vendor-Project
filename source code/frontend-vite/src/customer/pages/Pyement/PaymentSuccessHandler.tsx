@@ -33,7 +33,7 @@ const PaymentSuccessHandler = () => {
 
     return (
         <div className="min-h-[90vh] flex justify-center items-center">
-            {orders ? <div className="bg-primary-color text-white p-8 w-[90%] lg:w-[25%] border rounded-md h-[40vh] flex flex-col gap-7 items-center justify-center">
+            {orders ? <div className="bg-gradient-to-br from-coal to-card border border-line shadow-luxury text-cream p-8 w-[90%] lg:w-[25%] rounded-2xl h-[40vh] flex flex-col gap-7 items-center justify-center text-center">
                 <h1 className="text-3xl font-semibold">Congratulations!</h1>
                 <h1 className="text-2xl font-semibold">Your Order Get Success</h1>
                 <div>

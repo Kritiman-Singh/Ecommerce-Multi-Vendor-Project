@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import { teal } from '@mui/material/colors';
+import { amber as teal } from '@mui/material/colors';
 import { IconButton } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import type { Product } from '../../../../types/productTypes';
@@ -45,7 +45,7 @@ const SimilarProductCard = ({ product }: any) => {
                 <div className='price flex items-center gap-3 '>
                     <span className='font-semibold text-gray-800'> ₹{product.sellingPrice}</span>
                     <span className='text thin-line-through text-gray-400 '>₹{product.mrpPrice}</span>
-                    <span className='text-[#00927c] font-semibold'>{product.discountPercent}% off</span>
+                    <span className='text-gold-soft font-semibold'>{product.discountPercent}% off</span>
                 </div>
 
                 

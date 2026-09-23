@@ -12,6 +12,12 @@ dist
 dist-ssr
 *.local
 
+# Environment files (Render/local secrets)
+# .env kabhi commit mat karna, sirf .env.example jayegi
+.env
+.env.*
+!.env.example
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

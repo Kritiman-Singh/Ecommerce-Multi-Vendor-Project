@@ -38,10 +38,10 @@ const ChatBot = ({handleClose,productId}:ChatBotProps) => {
     // console.log(aiChatBot)
     return (
         <div className="rounded-lg">
-            <div className="w-full lg:w-[40vw] h-[82vh] shadow-2xl bg-white z-50 rounded-lg">
-                <div className=" h-[12%] flex justify-between items-center px-5 bg-slate-100 rounded-t-lg">
+            <div className="w-full lg:w-[40vw] h-[82vh] shadow-luxury bg-coal border border-line z-50 rounded-2xl overflow-hidden">
+                <div className=" h-[12%] flex justify-between items-center px-5 bg-card border-b border-line rounded-t-2xl">
                     <div className="flex items-center gap-3 ">
-                        <h1 className="logo">Zosh Bazzar</h1>
+                        <h1 className="logo">Zentro</h1>
                         <p>Assitant</p>
                     </div>
                    {/* {productId && <div className="flex items-center gap-3">
@@ -62,7 +62,7 @@ const ChatBot = ({handleClose,productId}:ChatBotProps) => {
 
                 <div className="h-[78%] p-5 flex flex-col py-5 px-5 overflow-y-auto  custom-scrollbar">
 
-                    <p>welcome to zosh bazzar Ai Assistant, you can
+                    <p>welcome to zentro Ai Assistant, you can
                       {productId?` Query About this Product : ${productId}`:"   Query about your cart, and order history here"}
                     </p>
                     { aiChatBot.messages.map((item:any, index:number) =>
