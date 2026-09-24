@@ -99,7 +99,7 @@ const CouponForm: React.FC = () => {
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <Box component="form" onSubmit={formik.handleSubmit} sx={{ mt: 3 }}>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
+            <Grid size={{ xs: 12, sm: 6 }}>
               <TextField
                 fullWidth
                 id="code"
@@ -113,7 +113,7 @@ const CouponForm: React.FC = () => {
                 margin="normal"
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid size={{ xs: 12, sm: 6 }}>
               <TextField
                 fullWidth
                 id="discountPercentage"
@@ -134,7 +134,7 @@ const CouponForm: React.FC = () => {
                 margin="normal"
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid size={{ xs: 12, sm: 6 }}>
               <DatePicker
                 sx={{ width: "100%" }}
                 label="Validity Start Date"
@@ -144,7 +144,7 @@ const CouponForm: React.FC = () => {
                 }
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid size={{ xs: 12, sm: 6 }}>
               <DatePicker
                 sx={{ width: "100%" }}
                 label="Validity End Date"
@@ -154,7 +154,7 @@ const CouponForm: React.FC = () => {
                 }
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid size={{ xs: 12 }}>
               <TextField
                 fullWidth
                 id="minimumOrderValue"
@@ -175,7 +175,7 @@ const CouponForm: React.FC = () => {
                 margin="normal"
               />
             </Grid>
-            <Grid item xs={12}>
+            <Grid size={{ xs: 12 }}>
               <Button
                 color="primary"
                 variant="contained"

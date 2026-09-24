@@ -64,7 +64,7 @@ const AddressForm:React.FC<AddressFormProp> = ({handleClose,paymentGateway}) => 
       </p>
       <form onSubmit={formik.handleSubmit}>
         <Grid container spacing={3}>
-          <Grid item xs={12}>
+          <Grid size={{ xs: 12 }}>
             <TextField
               fullWidth
               name="name"
@@ -76,7 +76,7 @@ const AddressForm:React.FC<AddressFormProp> = ({handleClose,paymentGateway}) => 
               helperText={formik.touched.name && formik.errors.name}
             />
           </Grid>
-          <Grid item xs={6}>
+          <Grid size={{ xs: 6 }}>
             <TextField
               fullWidth
               name="mobile"
@@ -88,7 +88,7 @@ const AddressForm:React.FC<AddressFormProp> = ({handleClose,paymentGateway}) => 
               helperText={formik.touched.mobile && formik.errors.mobile}
             />
           </Grid>
-          <Grid item xs={6}>
+          <Grid size={{ xs: 6 }}>
             <TextField
               fullWidth
               name="pinCode"
@@ -100,7 +100,7 @@ const AddressForm:React.FC<AddressFormProp> = ({handleClose,paymentGateway}) => 
               helperText={formik.touched.pinCode && formik.errors.pinCode}
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid size={{ xs: 12 }}>
             <TextField
               fullWidth
               name="address"
@@ -112,7 +112,7 @@ const AddressForm:React.FC<AddressFormProp> = ({handleClose,paymentGateway}) => 
               helperText={formik.touched.address && formik.errors.address}
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid size={{ xs: 12 }}>
             <TextField
               fullWidth
               name="locality"
@@ -124,7 +124,7 @@ const AddressForm:React.FC<AddressFormProp> = ({handleClose,paymentGateway}) => 
               helperText={formik.touched.locality && formik.errors.locality}
             />
           </Grid>
-          <Grid item xs={6}>
+          <Grid size={{ xs: 6 }}>
             <TextField
               fullWidth
               name="city"
@@ -136,7 +136,7 @@ const AddressForm:React.FC<AddressFormProp> = ({handleClose,paymentGateway}) => 
               helperText={formik.touched.city && formik.errors.city}
             />
           </Grid>
-          <Grid item xs={6}>
+          <Grid size={{ xs: 6 }}>
             <TextField
               fullWidth
               name="state"
@@ -148,7 +148,7 @@ const AddressForm:React.FC<AddressFormProp> = ({handleClose,paymentGateway}) => 
               helperText={formik.touched.state && formik.errors.state}
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid size={{ xs: 12 }}>
             <Button sx={{py:"14px"}} type="submit" variant="contained" color="primary" fullWidth>
               Add Address
             </Button>

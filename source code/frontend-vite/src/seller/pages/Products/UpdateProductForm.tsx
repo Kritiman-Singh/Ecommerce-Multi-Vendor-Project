@@ -184,7 +184,7 @@ const UpdateProductForm = () => {
         <div>
             <form onSubmit={formik.handleSubmit} className="space-y-4 p-4">
                 <Grid container spacing={2}>
-                    <Grid className="flex flex-wrap gap-5" item xs={12}>
+                    <Grid className="flex flex-wrap gap-5" size={{ xs: 12 }}>
                         <input
                             type="file"
                             accept="image/*"
@@ -231,7 +231,7 @@ const UpdateProductForm = () => {
                             ))}
                         </div>
                     </Grid>
-                    <Grid item xs={12} sm={12}>
+                    <Grid size={{ xs: 12, sm: 12 }}>
                         <TextField
                             fullWidth
                             id="title"
@@ -244,7 +244,7 @@ const UpdateProductForm = () => {
                             required
                         />
                     </Grid>
-                    <Grid item xs={12} sm={12}>
+                    <Grid size={{ xs: 12, sm: 12 }}>
                         <TextField
                             multiline
                             rows={4}
@@ -261,7 +261,7 @@ const UpdateProductForm = () => {
                             required
                         />
                     </Grid>
-                    <Grid item xs={12} sm={6} lg={3}>
+                    <Grid size={{ xs: 12, sm: 6, lg: 3 }}>
                         <TextField
                             fullWidth
                             id="mrp_price"
@@ -275,7 +275,7 @@ const UpdateProductForm = () => {
                             required
                         />
                     </Grid>
-                    <Grid item xs={12} sm={6} lg={3}>
+                    <Grid size={{ xs: 12, sm: 6, lg: 3 }}>
                         <TextField
                             fullWidth
                             id="sellingPrice"
@@ -295,7 +295,7 @@ const UpdateProductForm = () => {
                         />
                     </Grid>
 
-                    <Grid item xs={12} sm={6} lg={3}>
+                    <Grid size={{ xs: 12, sm: 6, lg: 3 }}>
                         <FormControl
                             fullWidth
                             error={formik.touched.color && Boolean(formik.errors.color)}
@@ -326,7 +326,7 @@ const UpdateProductForm = () => {
                             )}
                         </FormControl>
                     </Grid>
-                    <Grid item xs={12} sm={6} lg={3}>
+                    <Grid size={{ xs: 12, sm: 6, lg: 3 }}>
                         <FormControl
                             fullWidth
                             error={formik.touched.sizes && Boolean(formik.errors.sizes)}
@@ -357,7 +357,7 @@ const UpdateProductForm = () => {
                     </Grid>
                   
                
-                    <Grid item xs={12}>
+                    <Grid size={{ xs: 12 }}>
                         <Button
                             sx={{ p: "14px" }}
                             color="primary"
