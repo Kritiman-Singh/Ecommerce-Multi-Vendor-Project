@@ -3,6 +3,7 @@ package com.zosh.service;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.MailException;
 import org.springframework.mail.MailSendException;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -15,6 +16,9 @@ public class EmailService {
     @Autowired
     private JavaMailSender javaMailSender;
 
+    @Value("${spring.mail.username}")
+    private String fromEmail;
+
 
     public void sendVerificationOtpEmail(String userEmail, String otp, String subject, String text) throws MessagingException, MailSendException {
 
@@ -24,12 +28,14 @@ public class EmailService {
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "utf-8");
 
 
+            helper.setFrom(fromEmail);
             helper.setSubject(subject);
             helper.setText(text+otp, true);
             helper.setTo(userEmail);
             javaMailSender.send(mimeMessage);
-        } catch (MailException e) {
-            throw new MailSendException("Failed to send email");
+        } catch (MailException | MessagingException e) {
+            System.out.println("Mail send failed: " + e.getMessage());
+            throw new MailSendException("Failed to send email: " + e.getMessage(), e);
         }
     }
 }
