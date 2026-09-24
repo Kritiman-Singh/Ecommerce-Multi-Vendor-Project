@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useFormik } from "formik";
-import * as Yup from "yup";
 import {
     TextField,
     Button,
@@ -17,64 +16,13 @@ import {
 } from "@mui/material";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import CloseIcon from "@mui/icons-material/Close";
-// import { mainCategory } from "../../../data/category/mainCategory";
-import { menLevelTwo } from "../../../data/category/level two/menLevelTwo";
-import { womenLevelTwo } from "../../../data/category/level two/womenLevelTwo";
-import { menLevelThree } from "../../../data/category/level three/menLevelThree";
-import { womenLevelThree } from "../../../data/category/level three/womenLevelThree";
 import { colors } from "../../../data/Filter/color";
 import { useAppDispatch, useAppSelector } from "../../../Redux Toolkit/Store";
 import {  updateProduct } from "../../../Redux Toolkit/Seller/sellerProductSlice";
 import { uploadToCloudinary } from "../../../util/uploadToCloudnary";
-import { electronicsLevelThree } from "../../../data/category/level three/electronicsLevelThree";
-import { electronicsLevelTwo } from "../../../data/category/level two/electronicsLavelTwo";
-import { furnitureLevelTwo } from "../../../data/category/level two/furnitureLevleTwo";
-import { furnitureLevelThree } from "../../../data/category/level three/furnitureLevelThree";
 import { useParams } from "react-router-dom";
 import { fetchProductById } from "../../../Redux Toolkit/Customer/ProductSlice";
 import type { Seller } from "../../../types/sellerTypes";
-
-const categoryTwo: { [key: string]: any[] } = {
-    men: menLevelTwo,
-    women: womenLevelTwo,
-    kids: [],
-    home_furniture: furnitureLevelTwo,
-    beauty: [],
-    electronics: electronicsLevelTwo,
-};
-
-const categoryThree: { [key: string]: any[] } = {
-    men: menLevelThree,
-    women: womenLevelThree,
-    kids: [],
-    home_furniture: furnitureLevelThree,
-    beauty: [],
-    electronics: electronicsLevelThree,
-};
-
-const validationSchema = Yup.object({
-    title: Yup.string()
-        .min(5, "Title should be at least 5 characters long")
-        .required("Title is required"),
-    description: Yup.string()
-        .min(10, "Description should be at least 10 characters long")
-        .required("Description is required"),
-    price: Yup.number()
-        .positive("Price should be greater than zero")
-        .required("Price is required"),
-    discountedPrice: Yup.number()
-        .positive("Discounted Price should be greater than zero")
-        .required("Discounted Price is required"),
-    discountPercent: Yup.number()
-        .positive("Discount Percent should be greater than zero")
-        .required("Discount Percent is required"),
-    quantity: Yup.number()
-        .positive("Quantity should be greater than zero")
-        .required("Quantity is required"),
-    color: Yup.string().required("Color is required"),
-    category: Yup.string().required("Category is required"),
-    sizes: Yup.string().required("Sizes are required"),
-})
 
 interface FormValues {
     title: string;
@@ -94,7 +42,7 @@ interface FormValues {
 const UpdateProductForm = () => {
     const [uploadImage, setUploadingImage] = useState(false);
     const dispatch = useAppDispatch();
-    const { sellers, sellerProduct, products } = useAppSelector(store => store);
+    const { sellerProduct, products } = useAppSelector(store => store);
     const { productId } = useParams();
 
     const [snackbarOpen, setOpenSnackbar] = useState(false);
@@ -136,13 +84,6 @@ const UpdateProductForm = () => {
         const updatedImages = [...formik.values.images];
         updatedImages.splice(index, 1);
         formik.setFieldValue("images", updatedImages);
-    };
-
-    const childCategory = (category: any, parentCategoryId: any) => {
-        return category.filter((child: any) => {
-            // console.log("Category", parentCategoryId, child)
-            return child.parentCategoryId == parentCategoryId;
-        });
     };
 
     const handleCloseSnackbar = () => {
@@ -314,7 +255,7 @@ const UpdateProductForm = () => {
                                     <em>None</em>
                                 </MenuItem>
 
-                                {colors.map((color, index) => <MenuItem value={color.name}>
+                                {colors.map((color) => <MenuItem value={color.name}>
                                     <div className="flex gap-3">
                                         <span style={{ backgroundColor: color.hex }} className={`h-5 w-5 rounded-full ${color.name === "White" ? "border" : ""}`}></span>
                                         <p>{color.name}</p>

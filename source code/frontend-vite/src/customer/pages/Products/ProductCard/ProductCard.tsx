@@ -1,4 +1,5 @@
-import React, { useState, useEffect, MouseEvent } from "react";
+import React, { useState, useEffect } from "react";
+import type { MouseEvent } from "react";
 import "./ProductCard.css";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Box, Button, Modal } from "@mui/material";

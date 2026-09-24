@@ -1,4 +1,5 @@
-import React, { useState, useEffect, MouseEvent } from 'react';
+import React, { useState, useEffect } from 'react';
+import type { MouseEvent } from 'react';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { Button, IconButton } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';

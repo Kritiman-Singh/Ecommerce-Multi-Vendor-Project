@@ -1,4 +1,3 @@
-import React from 'react'
 import { XAxis, YAxis, ResponsiveContainer, LineChart, Line } from 'recharts';
 
 const data = [

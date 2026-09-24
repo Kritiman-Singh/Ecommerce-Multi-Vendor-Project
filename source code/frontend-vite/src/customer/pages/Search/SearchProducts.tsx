@@ -1,4 +1,5 @@
-import React, { ChangeEvent, useState } from 'react'
+import React, { useState } from 'react'
+import type { ChangeEvent } from 'react'
 import { searchProduct } from '../../../Redux Toolkit/Customer/ProductSlice';
 import { useAppDispatch, useAppSelector } from '../../../Redux Toolkit/Store';
 import ProductCard from '../Products/ProductCard/ProductCard';
