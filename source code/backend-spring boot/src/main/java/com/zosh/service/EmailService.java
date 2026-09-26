@@ -1,5 +1,47 @@
 package com.zosh.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class EmailService {
+
+    @Autowired
+    private BrevoEmailService brevoEmailService;
+
+    public void sendVerificationOtpEmail(
+            String userEmail,
+            String otp,
+            String subject,
+            String text
+    ) {
+
+        try {
+
+            brevoEmailService.sendOtpEmail(
+                    userEmail,
+                    otp,
+                    subject
+            );
+
+        } catch (Exception e) {
+
+            System.out.println("Mail send failed: " + e.getMessage());
+
+            throw new RuntimeException(
+                    "Failed to send verification email",
+                    e
+            );
+        }
+    }
+}
+
+
+/*
+
+
+package com.zosh.service;
+
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +57,8 @@ public class EmailService {
 
     @Autowired
     private JavaMailSender javaMailSender;
+    @Autowired
+    private BrevoEmailService brevoEmailService;
 
     @Value("${spring.mail.username}")
     private String fromEmail;
@@ -39,3 +83,4 @@ public class EmailService {
         }
     }
 }
+*/
