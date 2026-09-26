@@ -11,17 +11,17 @@ import java.util.Map;
 public class BrevoEmailService {
 
     private final RestClient restClient;
+    private final String apiKey;
+    private final String senderEmail;
+    private final String senderName;
 
-    @Value("${brevo.api-key}")
-    private String apiKey;
-
-    @Value("${brevo.sender-email}")
-    private String senderEmail;
-
-    @Value("${brevo.sender-name:Zentro}")
-    private String senderName;
-
-    public BrevoEmailService() {
+    public BrevoEmailService(
+            @Value("${brevo.api-key:}") String apiKey,
+            @Value("${brevo.sender-email:}") String senderEmail,
+            @Value("${brevo.sender-name:Zentro}") String senderName) {
+        this.apiKey = apiKey;
+        this.senderEmail = senderEmail;
+        this.senderName = senderName;
         this.restClient = RestClient.builder()
                 .baseUrl("https://api.brevo.com/v3")
                 .build();
@@ -32,6 +32,12 @@ public class BrevoEmailService {
             String otp,
             String subject
     ) {
+        if (apiKey == null || apiKey.isBlank()) {
+            throw new IllegalStateException("Brevo API key missing: BREVO_API_KEY env set karo");
+        }
+        if (senderEmail == null || senderEmail.isBlank()) {
+            throw new IllegalStateException("Brevo sender email missing: BREVO_SENDER_EMAIL env set karo");
+        }
 
         String html = """
                 <!DOCTYPE html>

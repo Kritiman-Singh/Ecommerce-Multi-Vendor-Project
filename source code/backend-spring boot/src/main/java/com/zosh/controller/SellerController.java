@@ -13,7 +13,6 @@ import com.zosh.response.AuthResponse;
 import com.zosh.service.*;
 import com.zosh.service.impl.CustomeUserServiceImplementation;
 import com.zosh.utils.OtpUtils;
-import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -44,7 +43,7 @@ public class SellerController {
 
 
     @PostMapping("/sent/login-top")
-    public ResponseEntity<ApiResponse> sentLoginOtp(@RequestBody VerificationCode req) throws MessagingException, SellerException {
+    public ResponseEntity<ApiResponse> sentLoginOtp(@RequestBody VerificationCode req) throws SellerException {
         Seller seller = sellerService.getSellerByEmail(req.getEmail());
 
         String otp = OtpUtils.generateOTP();
@@ -60,7 +59,7 @@ public class SellerController {
     }
 
     @PostMapping("/verify/login-top")
-    public ResponseEntity<AuthResponse> verifyLoginOtp(@RequestBody VerificationCode req) throws MessagingException, SellerException {
+    public ResponseEntity<AuthResponse> verifyLoginOtp(@RequestBody VerificationCode req) throws SellerException {
 //        Seller savedSeller = sellerService.createSeller(seller);
 
 
@@ -121,7 +120,7 @@ public class SellerController {
 
 
     @PostMapping
-    public ResponseEntity<Seller> createSeller(@RequestBody Seller seller) throws SellerException, MessagingException {
+    public ResponseEntity<Seller> createSeller(@RequestBody Seller seller) throws SellerException {
         Seller savedSeller = sellerService.createSeller(seller);
 
         String otp = OtpUtils.generateOTP();

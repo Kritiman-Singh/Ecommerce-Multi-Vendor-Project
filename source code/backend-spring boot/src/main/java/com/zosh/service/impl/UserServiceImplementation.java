@@ -8,8 +8,6 @@ import java.util.UUID;
 
 import com.zosh.exception.UserException;
 import com.zosh.service.UserService;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -27,20 +25,17 @@ public class UserServiceImplementation implements UserService {
 	private JwtProvider jwtProvider;
 	private PasswordEncoder passwordEncoder;
 	private PasswordResetTokenRepository passwordResetTokenRepository;
-	private JavaMailSender javaMailSender;
 	
 	public UserServiceImplementation(
 			UserRepository userRepository,
 			JwtProvider jwtProvider,
 			PasswordEncoder passwordEncoder,
-			PasswordResetTokenRepository passwordResetTokenRepository,
-			JavaMailSender javaMailSender) {
+			PasswordResetTokenRepository passwordResetTokenRepository) {
 		
 		this.userRepository=userRepository;
 		this.jwtProvider=jwtProvider;
 		this.passwordEncoder=passwordEncoder;
 		this.passwordResetTokenRepository=passwordResetTokenRepository;
-		this.javaMailSender=javaMailSender;
 		
 	}
 

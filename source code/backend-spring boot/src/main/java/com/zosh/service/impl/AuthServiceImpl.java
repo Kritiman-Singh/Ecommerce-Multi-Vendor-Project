@@ -20,7 +20,6 @@ import com.zosh.service.AuthService;
 import com.zosh.service.EmailService;
 import com.zosh.service.UserService;
 import com.zosh.utils.OtpUtils;
-import jakarta.mail.MessagingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -54,7 +53,7 @@ public class AuthServiceImpl implements AuthService {
 
 
     @Override
-    public void sentLoginOtp(String email) throws UserException, MessagingException {
+    public void sentLoginOtp(String email) throws UserException {
 
 
         String SIGNING_PREFIX = "signing_";
